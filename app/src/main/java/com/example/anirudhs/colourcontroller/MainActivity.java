@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
     int r=0,b=0,g=0;
 
@@ -29,8 +30,14 @@ public class MainActivity extends AppCompatActivity {
         Button button3 = (Button)findViewById(R.id.button3);
         Button resetButton = (Button)findViewById(R.id.resetButton);
 
+
+
         final RelativeLayout appScreen = (RelativeLayout)findViewById(R.id.activity_main);
         appScreen.setBackgroundColor(Color.rgb(0,0,0));
+
+        if(getColour()!= Color.rgb(0,0,0))
+            appScreen.setBackgroundColor(getColour());
+
 
 
         button.setOnClickListener(
@@ -42,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             r++;
                        appScreen.setBackgroundColor(Color.rgb(r,g,b));
                         textView2.setText(Integer.toString(r));
+                        storeColour(Color.rgb(r,g,b));
 
 
                     }
@@ -58,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                         appScreen.setBackgroundColor(Color.rgb(r,g,b));
                         textView3.setText(Integer.toString(b));
+                        storeColour(Color.rgb(r,g,b));
                     }
                 }
         );
@@ -71,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                         appScreen.setBackgroundColor(Color.rgb(r,g,b));
                         textView4.setText(Integer.toString(g));
+                        storeColour(Color.rgb(r,g,b));
                     }
                 }
         );
@@ -84,12 +94,14 @@ public class MainActivity extends AppCompatActivity {
                         textView4.setText(Integer.toString(g));
                         textView3.setText(Integer.toString(b));
                         textView2.setText(Integer.toString(r));
+                        storeColour(Color.rgb(r,g,b));
 
                     }
                 }
         );
+
     }
-        private void storeColour(int colour){
+    private void storeColour(int colour){
         SharedPreferences sharedPref = getSharedPreferences("Background colour",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("colour",colour);
