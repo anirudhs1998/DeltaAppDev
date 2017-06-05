@@ -89,5 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+        private void storeColour(int colour){
+        SharedPreferences sharedPref = getSharedPreferences("Background colour",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("colour",colour);
+
+        editor.apply();
+    }
+    private int getColour(){
+        SharedPreferences sharedPref = getSharedPreferences("Background colour",MODE_PRIVATE);
+        int selectedColour =sharedPref.getInt("colour",Color.rgb(0,0,0));
+        return selectedColour;
+    }
 
 }
